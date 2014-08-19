@@ -118,13 +118,16 @@ public:
   uint64_t RankMoreThan(uint64_t c, uint64_t pos) const;
 
   /*
-   * Count  distinct characters given zone
+   * Count distinct characters
    * Added by Masumi Shirakawa, Aug. 18, 2014.
    */
-  int CountDistinct(uint64_t beg_pos, uint64_t end_pos,
-                    uint64_t beg_node, uint64_t end_node, size_t h) const;
+  int Count(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
+            uint64_t beg_node, uint64_t end_node, size_t h) const;
 
-  /**
+  int Count(uint64_t beg_pos, uint64_t end_pos,
+            uint64_t beg_node, uint64_t end_node, size_t h) const;
+
+ /**
    * Compute the frequency of characters c' < c, c'=c, and c' > c, in the subarray A[0...pos)
    * @param c The character
    * @param pos The position of the end of the prefix (not inclusive)

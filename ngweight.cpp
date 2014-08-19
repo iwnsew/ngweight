@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 #include <map>
 #include "cmdline.h"
 #include "esa.hxx"
@@ -102,6 +103,7 @@ int main(int argc, char* argv[]){
   vector<int> Rn(T.size());
   vector<uint64_t> DA(T.size());
   int n = T.size();
+  map<int, pair<int, int> > w2lr;
 
   int k = (isWord) ? (int)id2word.size() : 0x100;
   if (isWord){
@@ -126,17 +128,35 @@ int main(int argc, char* argv[]){
     Rn[i] = rank;
   }
 
-  for(int i = 0; i < n; ++i){
+  int preword = T[SA[0]];
+  int prepos = 0;
+  for(int i = 1; i < n; ++i){
     DA[i] = Doc[SA[i]];
-    //cout << DA[i] << endl;
+    int word = T[SA[i]];
+    if (word != preword){
+      w2lr[preword] = pair<int, int>(prepos, i);
+      preword = word;
+      prepos = i;
+    }
   }
+  w2lr[preword] = pair<int, int>(prepos, n);
   wat_array::WatArray wa;
   wa.Init(DA);
 
   for (int i = 0; i < nodeNum; ++i){
     if (Rn[R[i]-1] - Rn[L[i]] > 0){
-      cout << i << "\t" << R[i] - L[i] << "\t"  << D[i] << "\t";
-      cout << wa.CountDistinct(L[i], R[i], 0, n, 0) << "\t";
+      //cout << i << "\t" << R[i] - L[i] << "\t"  << D[i] << "\t";
+
+      std::vector<uint64_t> beg_pos;
+      std::vector<uint64_t> end_pos;
+      for (int k = SA[L[i]]; k < SA[L[i]]+D[i]; ++k){
+        beg_pos.push_back(w2lr[T[k]].first);
+        end_pos.push_back(w2lr[T[k]].second);
+      }
+      int df = wa.Count(L[i], R[i], 0, n, 0);
+      int udf = wa.Count(beg_pos, end_pos, 0, n, 0);
+      cout << df << "\t" << udf << "\t" << udf-df << "\t";
+
       //cout << L[i] << "\t" << R[i] << "\t";
       printSnipet(T, SA[L[i]], D[i], id2word);
       cout << endl;
