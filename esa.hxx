@@ -110,16 +110,21 @@ index_type suffixtree(string_type T, sarray_type SA, sarray_type L, sarray_type 
  */
 
 template<typename string_type, typename sarray_type, typename index_type>
-int esaxx(string_type T, sarray_type SA, sarray_type L, sarray_type R, sarray_type D,
-     index_type n, index_type k, index_type& nodeNum) {
+int sais_xx(string_type T, sarray_type SA, index_type n, index_type k) {
   if ((n < 0) || (k <= 0)) return -1;
   int err = saisxx(T, SA, n, k);
   if (err != 0){
     return err;
   }
-  nodeNum = esaxx_private::suffixtree(T, SA, L, R, D, n);
   return 0;
 }
 
+template<typename string_type, typename sarray_type, typename index_type>
+int esa_xx(string_type T, sarray_type SA, sarray_type L, sarray_type R, sarray_type D,
+     index_type n, index_type k, index_type& nodeNum) {
+  if ((n < 0) || (k <= 0)) return -1;
+  nodeNum = esaxx_private::suffixtree(T, SA, L, R, D, n);
+  return 0;
+}
 
 #endif // _ESA_HXX

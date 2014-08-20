@@ -20,7 +20,8 @@ int getID(const string& str, map<string, int>& word2id){
   }
 }
 
-void printSnipet(const vector<int>& T, const int beg, const int len, const vector<string>& id2word){
+void printSnipet(const vector<int>& T, const int beg, const int len,
+                 const vector<string>& id2word){
   for (int i = 0; i < len; ++i){
     int c = T[beg + i];
     if (id2word.size() > 0){
@@ -34,6 +35,9 @@ void printSnipet(const vector<int>& T, const int beg, const int len, const vecto
 int main(int argc, char* argv[]){
   cmdline::parser p;
   p.add("word", 'w', "word type");
+  p.add("threshold", 't',
+        "min freq to reserve N-grams (for N>1)",
+        false, 2);
 
   if (!p.parse(argc, argv)){
     cerr << p.error() << endl
@@ -50,6 +54,7 @@ int main(int argc, char* argv[]){
   vector<int> Doc;
 
   bool isWord = p.exist("word");
+  int threshold = p.exist("threshold");
   map<string, int> word2id;
   istreambuf_iterator<char> isit(cin);
   istreambuf_iterator<char> end;
@@ -59,6 +64,7 @@ int main(int argc, char* argv[]){
   int flid = getID("\n", word2id);
 
   if (isWord){
+    cerr << "Word mode:" << endl;
     string word;
     while (isit != end){
       char c = *isit++;
@@ -74,10 +80,16 @@ int main(int argc, char* argv[]){
       }
       if (!isspace(c) && !ispunct(c)){
         word += tolower(c);
-      } else if (word.size() > 0){
-        T.push_back(getID(word, word2id));
-        Doc.push_back(docid);
-        word = "";
+      } else{
+        if (word.size() > 0){
+          T.push_back(getID(word, word2id));
+          Doc.push_back(docid);
+          word = "";
+        }
+        if (isspace(c) && c != ' '){
+          T.push_back(flid);
+          Doc.push_back(docid);
+        }
       }
       ++origLen;
     }
@@ -86,7 +98,7 @@ int main(int argc, char* argv[]){
       Doc.push_back(docid);
     }
   } else {
-    cerr << "てやんでい！" << endl;
+    cerr << "Char mode: not supported yet! sorry!" << endl;
     return -1;
   }
 
@@ -96,40 +108,24 @@ int main(int argc, char* argv[]){
     id2word[it->second] = it->first;
   }
 
-  vector<int> SA(T.size());
-  vector<int> L (T.size());
-  vector<int> R (T.size());
-  vector<int> D (T.size());
-  vector<int> Rn(T.size());
-  vector<uint64_t> DA(T.size());
   int n = T.size();
-  map<int, pair<int, int> > w2lr;
-
+  vector<int> SA(n);
   int k = (isWord) ? (int)id2word.size() : 0x100;
   if (isWord){
     cerr << "origN:" << origLen << endl;
   }
   cerr << "    n:" << n        << endl;
   cerr << "alpha:" << k        << endl;
+  if (n < 1) return -1;
 
-  int nodeNum = 0;
-  if (esaxx(T.begin(), SA.begin(), 
-	    L.begin(), R.begin(), D.begin(), 
-	    n, k, nodeNum) == -1){
+  if (sais_xx(T.begin(), SA.begin(), n, k) == -1){
     return -1;
-  }
-  cerr << " node:" << nodeNum << endl;
-
-  int rank = 0;
-  for (int i = 0; i < nodeNum; ++i){
-    if (i==0 || T[(SA[i]+n-1)%n] != T[(SA[i-1]+n-1)%n]){
-      rank++;
-    }
-    Rn[i] = rank;
   }
 
   int preword = T[SA[0]];
   int prepos = 0;
+  vector<uint64_t> DA(n);
+  map<int, pair<int, int> > w2lr;
   for(int i = 1; i < n; ++i){
     DA[i] = Doc[SA[i]];
     int word = T[SA[i]];
@@ -139,23 +135,54 @@ int main(int argc, char* argv[]){
       prepos = i;
     }
   }
+  vector<int>().swap(Doc);
   w2lr[preword] = pair<int, int>(prepos, n);
   wat_array::WatArray wa;
   wa.Init(DA);
+  vector<uint64_t>().swap(DA);
 
-  for (int i = 0; i < nodeNum; ++i){
+  vector<int> L (n);
+  vector<int> R (n);
+  vector<int> D (n);
+
+  int nodeNum = 0;
+  if (esa_xx(T.begin(), SA.begin(), 
+	    L.begin(), R.begin(), D.begin(), 
+	    n, k, nodeNum) == -1){
+    return -1;
+  }
+  cerr << " node:" << nodeNum << endl;
+
+
+  vector<int> Rn(n);
+  Rn[0] = 0;
+  int rank = 0;
+  for (int i = 1; i < n; ++i){
+    if (T[(SA[i]-1+n)%n] != T[(SA[i-1]-1+n)%n]){
+      rank++;
+    }
+    Rn[i] = rank;
+  }
+
+  for (int i = 0; i < nodeNum - 1; ++i){
+    if (D[i] > 1 && R[i] - L[i] < threshold) continue;
     if (Rn[R[i]-1] - Rn[L[i]] > 0){
-      //cout << i << "\t" << R[i] - L[i] << "\t"  << D[i] << "\t";
-
+      bool isfl = false;
       std::vector<uint64_t> beg_pos;
       std::vector<uint64_t> end_pos;
       for (int k = SA[L[i]]; k < SA[L[i]]+D[i]; ++k){
+        if (T[k] == flid){
+          isfl = true;
+          break;
+        }
         beg_pos.push_back(w2lr[T[k]].first);
         end_pos.push_back(w2lr[T[k]].second);
       }
+      if (isfl) continue;
       int df = wa.Count(L[i], R[i], 0, n, 0);
       int udf = wa.Count(beg_pos, end_pos, 0, n, 0);
-      cout << df << "\t" << udf << "\t" << udf-df << "\t";
+      cout << i << "\t" << D[i] << "\t" << R[i] - L[i] << "\t";
+      cout << df << "\t" << udf << "\t";
 
       //cout << L[i] << "\t" << R[i] << "\t";
       printSnipet(T, SA[L[i]], D[i], id2word);
