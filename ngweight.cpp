@@ -61,7 +61,7 @@ int main(int argc, char* argv[]){
   istreambuf_iterator<char> end;
 
   size_t origLen = 0;
-  int docid = 0;
+  int docid = -1;
   int lfid = getID("\n", word2id);
 
   if (isWord){
@@ -76,7 +76,8 @@ int main(int argc, char* argv[]){
           s += c;
           c = *isit++;
         }
-        docid = atoi(s.c_str());
+        docid++;
+        //docid = atoi(s.c_str());
         c = *isit++;
       }
       if (!isspace(c) && !ispunct(c)){
