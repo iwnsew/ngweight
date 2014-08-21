@@ -99,14 +99,13 @@ uint64_t WatArray::RankMoreThan(uint64_t c, uint64_t pos) const{
 int WatArray::Count(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
                     uint64_t beg_node, uint64_t end_node, size_t h) const{
   if (beg_pos.size() != end_pos.size()) return -1;
-  if (h == bit_arrays_.size()) return 1;
+  if (h >= bit_arrays_.size()) return 1;
   int count = 0;
   const BitArray& ba = bit_arrays_[h];
   uint64_t beg_node_zero = ba.Rank(0, beg_node);
   uint64_t beg_node_one  = beg_node - beg_node_zero;
   uint64_t end_node_zero = ba.Rank(0, end_node);
   uint64_t boundary      = beg_node + end_node_zero - beg_node_zero;
-  //cout << h << " " << beg_pos << " " << end_pos << " " << beg_node_zero << " " << beg_node_one << " " << beg_node << " " << boundary << " " << end_node << endl;
 
   std::vector<uint64_t> beg_pos_zero;
   std::vector<uint64_t> end_pos_zero;
@@ -128,7 +127,6 @@ int WatArray::Count(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos
   if (pos_one_check){
     count += Count(beg_pos_one, end_pos_one, boundary, end_node, h+1);
   }
-  //cout << h << " " << beg_pos_zero << " " << end_pos_zero << " " << beg_pos_one << " " << end_pos_one << " " << endl;
   return count; 
 }
 

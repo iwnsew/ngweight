@@ -2,15 +2,15 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include <map>
+#include <unordered_map>
 #include "cmdline.h"
 #include "esa.hxx"
 #include "wat_array.hpp"
 
 using namespace std;
 
-int getID(const string& str, map<string, int>& word2id){
-  map<string, int>::const_iterator it = word2id.find(str);
+int getID(const string& str, unordered_map<string, int>& word2id){
+  unordered_map<string, int>::const_iterator it = word2id.find(str);
   if (it == word2id.end()){
     int newID = (int)word2id.size();
     word2id[str] = newID;
@@ -30,6 +30,7 @@ void printSnipet(const vector<int>& T, const int beg, const int len,
       cout << (isspace((char)c) ? '_' : (char)c);
     }
   }
+  return;
 }
 
 int main(int argc, char* argv[]){
@@ -54,14 +55,14 @@ int main(int argc, char* argv[]){
   vector<int> Doc;
 
   bool isWord = p.exist("word");
-  int threshold = p.exist("threshold");
-  map<string, int> word2id;
+  int threshold = p.get<int>("threshold");
+  unordered_map<string, int> word2id;
   istreambuf_iterator<char> isit(cin);
   istreambuf_iterator<char> end;
 
   size_t origLen = 0;
   int docid = 0;
-  int flid = getID("\n", word2id);
+  int lfid = getID("\n", word2id);
 
   if (isWord){
     cerr << "Word mode:" << endl;
@@ -87,7 +88,7 @@ int main(int argc, char* argv[]){
           word = "";
         }
         if (isspace(c) && c != ' '){
-          T.push_back(flid);
+          T.push_back(lfid);
           Doc.push_back(docid);
         }
       }
@@ -103,7 +104,7 @@ int main(int argc, char* argv[]){
   }
 
   vector<string> id2word(word2id.size());
-  for (map<string, int>::const_iterator it = word2id.begin();
+  for (unordered_map<string, int>::const_iterator it = word2id.begin();
        it != word2id.end(); ++it){
     id2word[it->second] = it->first;
   }
@@ -116,7 +117,6 @@ int main(int argc, char* argv[]){
   }
   cerr << "    n:" << n        << endl;
   cerr << "alpha:" << k        << endl;
-  if (n < 1) return -1;
 
   if (sais_xx(T.begin(), SA.begin(), n, k) == -1){
     return -1;
@@ -125,7 +125,7 @@ int main(int argc, char* argv[]){
   int preword = T[SA[0]];
   int prepos = 0;
   vector<uint64_t> DA(n);
-  map<int, pair<int, int> > w2lr;
+  unordered_map<int, pair<int, int> > w2lr;
   for(int i = 1; i < n; ++i){
     DA[i] = Doc[SA[i]];
     int word = T[SA[i]];
@@ -153,7 +153,6 @@ int main(int argc, char* argv[]){
   }
   cerr << " node:" << nodeNum << endl;
 
-
   vector<int> Rn(n);
   Rn[0] = 0;
   int rank = 0;
@@ -163,29 +162,33 @@ int main(int argc, char* argv[]){
     }
     Rn[i] = rank;
   }
+  cerr << "rank ok" << endl;
 
   for (int i = 0; i < nodeNum - 1; ++i){
     if (D[i] > 1 && R[i] - L[i] < threshold) continue;
     if (Rn[R[i]-1] - Rn[L[i]] > 0){
-      bool isfl = false;
+      bool skip = false;
       std::vector<uint64_t> beg_pos;
       std::vector<uint64_t> end_pos;
       for (int k = SA[L[i]]; k < SA[L[i]]+D[i]; ++k){
-        if (T[k] == flid){
-          isfl = true;
+        if (T[k] == lfid){
+          skip = true;
+          break;
+        }
+        if ((double)(R[i] - L[i]) < log2(w2lr[T[k]].second - w2lr[T[k]].first)){
+          skip = true;
           break;
         }
         beg_pos.push_back(w2lr[T[k]].first);
         end_pos.push_back(w2lr[T[k]].second);
       }
-      if (isfl) continue;
+      if (skip) continue;
+      printSnipet(T, SA[L[i]], D[i], id2word);
       int df = wa.Count(L[i], R[i], 0, n, 0);
       int udf = wa.Count(beg_pos, end_pos, 0, n, 0);
       cout << i << "\t" << D[i] << "\t" << R[i] - L[i] << "\t";
       cout << df << "\t" << udf << "\t";
 
-      //cout << L[i] << "\t" << R[i] << "\t";
-      printSnipet(T, SA[L[i]], D[i], id2word);
       cout << endl;
     }
   }

@@ -9,7 +9,7 @@ def set_options(ctx):
     
 def configure(ctx):
   ctx.check_tool('compiler_cxx')
-  ctx.env.CXXFLAGS += ['-O2', '-Wall', '-g']
+  ctx.env.CXXFLAGS += ['-O2', '-Wall', '-g', '-std=c++0x']
 
 def build(bld):
   task1= bld(features='cxx cprogram',
@@ -17,4 +17,3 @@ def build(bld):
        name         = 'ngweight',
        target       = 'ngweight',
        includes     = '.')
-
