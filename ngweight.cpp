@@ -165,30 +165,57 @@ int main(int argc, char* argv[]){
   }
   cerr << "rank ok" << endl;
 
-  for (int i = 0; i < nodeNum - 1; ++i){
+  vector<int> preterm;
+  vector<unordered_map<uint64_t, uint64_t> > constraint;
+  for (int i = nodeNum - 2; i >= 0; --i){
     if (D[i] > 1 && R[i] - L[i] < threshold) continue;
     if (Rn[R[i]-1] - Rn[L[i]] > 0){
       bool skip = false;
-      std::vector<uint64_t> beg_pos;
-      std::vector<uint64_t> end_pos;
-      for (int k = SA[L[i]]; k < SA[L[i]]+D[i]; ++k){
-        if (T[k] == lfid){
+      vector<uint64_t> beg_pos;
+      vector<uint64_t> end_pos;
+      int beg = SA[L[i]];
+      int len = D[i];
+      int prefix = 0;
+      for (int k = 0; k < len; ++k){
+        if (T[beg+k] == lfid){
           skip = true;
           break;
         }
-        if ((double)(R[i] - L[i]) < log2(w2lr[T[k]].second - w2lr[T[k]].first)){
+        if ((double)(R[i] - L[i]) < log2(w2lr[T[beg+k]].second - w2lr[T[beg+k]].first)){
           skip = true;
           break;
         }
-        beg_pos.push_back(w2lr[T[k]].first);
-        end_pos.push_back(w2lr[T[k]].second);
+        if (k < (int)preterm.size() && preterm[k] == T[beg+k]){
+          prefix++;
+        }else{
+          for (int l = preterm.size()-1; l >= k; --l){
+            preterm.pop_back();
+            constraint.pop_back();
+          }
+          beg_pos.push_back(w2lr[T[beg+k]].first);
+          end_pos.push_back(w2lr[T[beg+k]].second);
+          preterm.push_back(T[beg+k]);
+          unordered_map<uint64_t, uint64_t> cnstrnt;
+          constraint.push_back(cnstrnt);
+        }
       }
       if (skip) continue;
-      printSnipet(T, SA[L[i]], D[i], id2word);
+      printSnipet(T, beg, len, id2word);
       int df = wa.Count(L[i], R[i], 0, n, 0);
-      int udf = wa.Count(beg_pos, end_pos, 0, n, 0);
-      cout << i << "\t" << D[i] << "\t" << R[i] - L[i] << "\t";
+      int udf = 0;
+      if (prefix > 0){
+        udf = wa.Count(constraint[len-1], constraint[prefix-1], beg_pos, end_pos, 0, n, 0);
+      }else{
+        udf = wa.Count(constraint[len-1], beg_pos, end_pos, 0, n, 0);
+      }
+      cout << "\t" << i << "\t" << len << "\t" << R[i] - L[i] << "\t";
       cout << df << "\t" << udf << "\t";
+
+      /*cout << endl;
+      for (unordered_map<uint64_t, uint64_t>::const_iterator it = constraint[len-1].begin();
+      it != constraint[len-1].end(); ++it){
+        cout << it->first << ":" << it->second << "\t";
+      }*/
 
       cout << endl;
     }

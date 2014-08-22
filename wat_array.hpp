@@ -25,6 +25,7 @@
 #include <stdint.h>
 #include <iostream>
 #include <cassert>
+#include <unordered_map>
 #include "bit_array.hpp"
 
 namespace wat_array {
@@ -125,6 +126,15 @@ public:
             uint64_t beg_node, uint64_t end_node, size_t h) const;
 
   int Count(uint64_t beg_pos, uint64_t end_pos,
+            uint64_t beg_node, uint64_t end_node, size_t h) const;
+
+  int Count(std::unordered_map<uint64_t, uint64_t>& new_constraint,
+            std::unordered_map<uint64_t, uint64_t>& constraint,
+            std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
+            uint64_t beg_node, uint64_t end_node, size_t h) const;
+
+  int Count(std::unordered_map<uint64_t, uint64_t>& new_constraint,
+            std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
             uint64_t beg_node, uint64_t end_node, size_t h) const;
 
  /**

@@ -96,7 +96,7 @@ uint64_t WatArray::RankMoreThan(uint64_t c, uint64_t pos) const{
   return rank_more_than;
 }
 
-int WatArray::Count(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
+int WatArray::Count(vector<uint64_t> beg_pos, vector<uint64_t> end_pos,
                     uint64_t beg_node, uint64_t end_node, size_t h) const{
   if (beg_pos.size() != end_pos.size()) return -1;
   if (h >= bit_arrays_.size()) return 1;
@@ -107,10 +107,10 @@ int WatArray::Count(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos
   uint64_t end_node_zero = ba.Rank(0, end_node);
   uint64_t boundary      = beg_node + end_node_zero - beg_node_zero;
 
-  std::vector<uint64_t> beg_pos_zero;
-  std::vector<uint64_t> end_pos_zero;
-  std::vector<uint64_t> beg_pos_one;
-  std::vector<uint64_t> end_pos_one;
+  vector<uint64_t> beg_pos_zero;
+  vector<uint64_t> end_pos_zero;
+  vector<uint64_t> beg_pos_one;
+  vector<uint64_t> end_pos_one;
   bool pos_zero_check = true;
   bool pos_one_check = true;
   for (size_t i = 0; i < beg_pos.size(); ++i){
@@ -127,20 +127,103 @@ int WatArray::Count(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos
   if (pos_one_check){
     count += Count(beg_pos_one, end_pos_one, boundary, end_node, h+1);
   }
-  return count; 
+  return count;
 }
 
 int WatArray::Count(uint64_t beg_pos, uint64_t end_pos,
                     uint64_t beg_node, uint64_t end_node, size_t h) const{
-  std::vector<uint64_t> beg_pos_v;
-  std::vector<uint64_t> end_pos_v;
+  vector<uint64_t> beg_pos_v;
+  vector<uint64_t> end_pos_v;
   beg_pos_v.push_back(beg_pos);
   end_pos_v.push_back(end_pos);
   return Count(beg_pos_v, end_pos_v, beg_node, end_node, h);
 }
- 
+
+int WatArray::Count(unordered_map<uint64_t, uint64_t>& new_constraint,
+                    unordered_map<uint64_t, uint64_t>& constraint,
+                    vector<uint64_t> beg_pos, vector<uint64_t> end_pos,
+                    uint64_t beg_node, uint64_t end_node, size_t h) const{
+  if (beg_pos.size() != end_pos.size()) return -1;
+  if (h >= bit_arrays_.size()) return 1;
+  int count = 0;
+  const BitArray& ba = bit_arrays_[h];
+  uint64_t beg_node_zero = ba.Rank(0, beg_node);
+  uint64_t beg_node_one  = beg_node - beg_node_zero;
+  uint64_t end_node_zero = ba.Rank(0, end_node);
+  uint64_t boundary      = beg_node + end_node_zero - beg_node_zero;
+
+  vector<uint64_t> beg_pos_zero;
+  vector<uint64_t> end_pos_zero;
+  vector<uint64_t> beg_pos_one;
+  vector<uint64_t> end_pos_one;
+  if (constraint.find(beg_node) != constraint.end() && constraint[beg_node] <= boundary){
+    bool pos_zero_check = true;
+    for (size_t i = 0; i < beg_pos.size(); ++i){
+      beg_pos_zero.push_back(ba.Rank(0, beg_node + beg_pos[i]) - beg_node_zero);
+      end_pos_zero.push_back(ba.Rank(0, beg_node + end_pos[i]) - beg_node_zero);
+      if (beg_pos_zero[i] == end_pos_zero[i]) pos_zero_check = false;
+    }
+    if (pos_zero_check){
+      new_constraint[beg_node] = boundary;
+      count += Count(new_constraint, constraint, beg_pos_zero, end_pos_zero, beg_node, boundary, h+1);
+    }
+  }
+  if (constraint.find(boundary) != constraint.end() && constraint[boundary] <= end_node){
+    bool pos_one_check = true;
+    for (size_t i = 0; i < beg_pos.size(); ++i){
+      beg_pos_one.push_back(ba.Rank(1, beg_node + beg_pos[i]) - beg_node_one);
+      end_pos_one.push_back(ba.Rank(1, beg_node + end_pos[i]) - beg_node_one);
+      if (beg_pos_one[i] == end_pos_one[i]) pos_one_check = false;
+    }
+    if (pos_one_check){
+      new_constraint[boundary] = end_node;
+      count += Count(new_constraint, constraint, beg_pos_one, end_pos_one, boundary, end_node, h+1);
+    }
+  }
+  return count;
+}
+
+int WatArray::Count(unordered_map<uint64_t, uint64_t>& new_constraint,
+                    vector<uint64_t> beg_pos, vector<uint64_t> end_pos,
+                    uint64_t beg_node, uint64_t end_node, size_t h) const{
+  if (beg_pos.size() != end_pos.size()) return -1;
+  if (h >= bit_arrays_.size()) return 1;
+  int count = 0;
+  const BitArray& ba = bit_arrays_[h];
+  uint64_t beg_node_zero = ba.Rank(0, beg_node);
+  uint64_t beg_node_one  = beg_node - beg_node_zero;
+  uint64_t end_node_zero = ba.Rank(0, end_node);
+  uint64_t boundary      = beg_node + end_node_zero - beg_node_zero;
+
+  vector<uint64_t> beg_pos_zero;
+  vector<uint64_t> end_pos_zero;
+  vector<uint64_t> beg_pos_one;
+  vector<uint64_t> end_pos_one;
+  bool pos_zero_check = true;
+  for (size_t i = 0; i < beg_pos.size(); ++i){
+    beg_pos_zero.push_back(ba.Rank(0, beg_node + beg_pos[i]) - beg_node_zero);
+    end_pos_zero.push_back(ba.Rank(0, beg_node + end_pos[i]) - beg_node_zero);
+    if (beg_pos_zero[i] == end_pos_zero[i]) pos_zero_check = false;
+  }
+  if (pos_zero_check){
+    new_constraint[beg_node] = boundary;
+    count += Count(new_constraint, beg_pos_zero, end_pos_zero, beg_node, boundary, h+1);
+  }
+  bool pos_one_check = true;
+  for (size_t i = 0; i < beg_pos.size(); ++i){
+    beg_pos_one.push_back(ba.Rank(1, beg_node + beg_pos[i]) - beg_node_one);
+    end_pos_one.push_back(ba.Rank(1, beg_node + end_pos[i]) - beg_node_one);
+    if (beg_pos_one[i] == end_pos_one[i]) pos_one_check = false;
+  }
+  if (pos_one_check){
+    new_constraint[boundary] = end_node;
+    count += Count(new_constraint, beg_pos_one, end_pos_one, boundary, end_node, h+1);
+  }
+  return count;
+}
+
 void WatArray::RankAll(uint64_t c, uint64_t pos,
-		       uint64_t& rank,  uint64_t& rank_less_than, uint64_t& rank_more_than) const{
+		       uint64_t& rank, uint64_t& rank_less_than, uint64_t& rank_more_than) const{
   if (c >= alphabet_num_) {
     rank_less_than = NOTFOUND;
     rank_more_than = NOTFOUND;
