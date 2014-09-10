@@ -1,8 +1,8 @@
 # How to use
 
-`$ ./waf configure`
-`$ ./waf`
-`$ bin/default/ngweight -w < sample_text > sample_output`
+    $ ./waf configure
+    $ ./waf
+    $ bin/default/ngweight -w < sample_text > sample_output
 
 # Output format
 
