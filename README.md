@@ -6,7 +6,7 @@ $ ngweight -w < sample_text > sample_output
 [Output format]
 
 In each line:
-<internal node id>\t<term length>\t<gtf: global term freq>\t<df: document freq>\t<udf: unigram document freq>\t<term>
+(internal node id)\t(term length)\t(gtf: global term freq)\t(df: document freq)\t(udf: unigram document freq)\t(term)
 
 [N-gram weight]
 
