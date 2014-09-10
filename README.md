@@ -9,8 +9,9 @@ $ ngweight -w < sample_text > sample_output
 
 [N-gram weight]
 
-W(t) = log(D * df/udf^2)
+weight = log(D * df/udf^2)
 
+[License]
 
 Copyright (c) 2014 Masumi Shirakawa All Rights Reserved.
 
