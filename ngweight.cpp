@@ -20,17 +20,18 @@ int getID(const string& str, unordered_map<string, int>& word2id){
   }
 }
 
-void printSnipet(const vector<int>& T, const int beg, const int len,
+string getTerm(const vector<int>& T, const int beg, const int len,
                  const vector<string>& id2word){
+  string term = "";
   for (int i = 0; i < len; ++i){
     int c = T[beg + i];
     if (id2word.size() > 0){
-      cout << id2word[c] << " ";
+      term += id2word[c] + " ";
     } else {
-      cout << (isspace((char)c) ? '_' : (char)c);
+      term += (isspace((char)c) ? '_' : (char)c);
     }
   }
-  return;
+  return term;
 }
 
 int main(int argc, char* argv[]){
@@ -39,6 +40,7 @@ int main(int argc, char* argv[]){
   p.add("threshold", 't',
         "min freq to reserve N-grams (for N>1)",
         false, 2);
+  p.add("maxlength", 'l', "max length of N-grams", false, 10);
 
   if (!p.parse(argc, argv)){
     cerr << p.error() << endl
@@ -56,6 +58,7 @@ int main(int argc, char* argv[]){
 
   bool isWord = p.exist("word");
   int threshold = p.get<int>("threshold");
+  int maxlength = p.get<int>("maxlength");
   unordered_map<string, int> word2id;
   istreambuf_iterator<char> isit(cin);
   istreambuf_iterator<char> end;
@@ -103,6 +106,7 @@ int main(int argc, char* argv[]){
     cerr << "Char mode: not supported yet! sorry!" << endl;
     return -1;
   }
+  docid++;
 
   vector<string> id2word(word2id.size());
   for (unordered_map<string, int>::const_iterator it = word2id.begin();
@@ -169,22 +173,33 @@ int main(int argc, char* argv[]){
   vector<unordered_map<uint64_t, uint64_t> > constraint;
   for (int i = nodeNum - 2; i >= 0; --i){
     if (D[i] > 1 && R[i] - L[i] < threshold) continue;
+    if (D[i] > maxlength) continue;
     if (Rn[R[i]-1] - Rn[L[i]] > 0){
-      bool skip = false;
       vector<uint64_t> beg_pos;
       vector<uint64_t> end_pos;
       int beg = SA[L[i]];
       int len = D[i];
       int prefix = 0;
+      bool skip = true;
+      int gtf = R[i] - L[i];
+      //double pudf = (double)docid;
       for (int k = 0; k < len; ++k){
         if (T[beg+k] == lfid){
           skip = true;
           break;
         }
-        if ((double)(R[i] - L[i]) < log2(w2lr[T[beg+k]].second - w2lr[T[beg+k]].first)){
-          skip = true;
-          break;
+        //int gutf = w2lr[T[beg+k]].second - w2lr[T[beg+k]].first;
+        //pudf *= (1 - exp(-(double)gutf/(double)docid));
+        if ((double)(R[i] - L[i]) > double(w2lr[T[beg+k]].second - w2lr[T[beg+k]].first)/2000){
+          skip = false;
         }
+      }
+      if (skip) continue;
+      //double pdf = (double)docid * (1 - exp(-(double)gtf/(double)docid));
+      //double med = log2(pudf/pdf);
+      //double ngw = log2((double)docid*pdf/(pudf*pudf));
+      //if ((double)docid*pdf/(pudf*pudf) < 2) continue;
+      for (int k = 0; k < len; ++k){
         if (k < (int)preterm.size() && preterm[k] == T[beg+k]){
           prefix++;
         }else{
@@ -199,25 +214,25 @@ int main(int argc, char* argv[]){
           constraint.push_back(cnstrnt);
         }
       }
-      if (skip) continue;
-      printSnipet(T, beg, len, id2word);
+      string term = getTerm(T, beg, len, id2word);
       int df = wa.Count(L[i], R[i], 0, n, 0);
       int udf = 0;
       if (prefix > 0){
+        if (constraint[prefix-1].size() == 0){
+          vector<uint64_t> beg_pos2;
+          vector<uint64_t> end_pos2;
+          for (int k = 0; k < prefix; ++k){
+            beg_pos2.push_back(w2lr[T[beg+k]].first);
+            end_pos2.push_back(w2lr[T[beg+k]].second);
+          }
+          wa.Count(constraint[prefix-1], beg_pos2, end_pos2, 0, n, 0);
+        }
         udf = wa.Count(constraint[len-1], constraint[prefix-1], beg_pos, end_pos, 0, n, 0);
       }else{
         udf = wa.Count(constraint[len-1], beg_pos, end_pos, 0, n, 0);
       }
-      cout << "\t" << i << "\t" << len << "\t" << R[i] - L[i] << "\t";
-      cout << df << "\t" << udf << "\t";
-
-      /*cout << endl;
-      for (unordered_map<uint64_t, uint64_t>::const_iterator it = constraint[len-1].begin();
-      it != constraint[len-1].end(); ++it){
-        cout << it->first << ":" << it->second << "\t";
-      }*/
-
-      cout << endl;
+      //double ngw = log2((double)docid*df/(udf*udf));
+      cout << i << "\t" << len << "\t" << gtf << "\t" << df << "\t" << udf << "\t" << term << endl;
     }
   }
 

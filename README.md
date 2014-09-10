@@ -1,3 +1,18 @@
+[How to use]
+
+$ ngweight -w < sample_text > sample_output
+
+
+[Output format]
+
+In each line:
+<internal node id>\t<term length>\t<gtf: global term freq>\t<df: document freq>\t<udf: unigram document freq>\t<term>
+
+[N-gram weight]
+
+W(t) = log(D * df/udf^2)
+
+
 Copyright (c) 2014 Masumi Shirakawa All Rights Reserved.
 
 Permission is hereby granted, free of charge, to any person
