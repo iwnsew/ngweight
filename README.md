@@ -1,19 +1,18 @@
-[How to use]
+# How to use
 
- $ ./waf configure
- $ ./waf
- $ bin/default/ngweight -w < sample_text > sample_output
+`$ ./waf configure`
+`$ ./waf`
+`$ bin/default/ngweight -w < sample_text > sample_output`
 
+# Output format
 
-[Output format]
+[internal node id] \t [term length] \t [gtf: global term freq] \t [df: document freq] \t [udf: unigram document freq] \t [term]
 
-(internal node id)\t(term length)\t(gtf: global term freq)\t(df: document freq)\t(udf: unigram document freq)\t(term)
-
-[N-gram weight]
+# N-gram weight
 
 weight = log(D * df/udf^2)
 
-[License]
+# License
 
 Copyright (c) 2014 Masumi Shirakawa All Rights Reserved.
 
