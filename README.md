@@ -8,6 +8,12 @@
 
 [internal node id] \t [term length] \t [gtf: global term freq] \t [df: document freq] \t [udf: unigram document freq] \t [term]
 
+# Processed data
+
+English Wikipedia data (Oct. 1, 2013)
+
+http://mljournalism.com/ngw/ngram.bz2
+
 # N-gram weight
 
 weight = log(D * df/udf^2)
