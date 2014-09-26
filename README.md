@@ -14,6 +14,10 @@ Using English Wikipedia data (Oct. 1, 2013)
 
 http://mljournalism.com/ngw/ngram.bz2
 
+# Demo system
+
+http://mljournalism.com/ngw/
+
 # N-gram IDF weight
 
 weight = log(D * df/udf^2)
