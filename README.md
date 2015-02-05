@@ -22,6 +22,10 @@ http://mljournalism.com/ngw/
 
 weight = log(D * df/udf^2)
 
+# Keyphrase Datasets of our WWW2015 paper
+
+They will be released soon.
+
 # License
 
 Copyright (c) 2014 Masumi Shirakawa All Rights Reserved.
