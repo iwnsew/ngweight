@@ -22,9 +22,13 @@ http://mljournalism.com/ngw/
 
 weight = log(D * df/udf^2)
 
-# Keyphrase Datasets of our WWW2015 paper
+# Keyphrase Datasets
 
 They will be released soon.
+
+# Reference
+
+Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: N-gram IDF: A Global Term Weighting Scheme Based on Information Distance, International World Wide Web Conference (WWW 2015) (May 2015, to appear).
 
 # License
 
