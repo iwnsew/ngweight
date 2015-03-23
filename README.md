@@ -28,7 +28,7 @@ They will be released soon.
 
 # Reference
 
-Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: N-gram IDF: A Global Term Weighting Scheme Based on Information Distance, International World Wide Web Conference (WWW 2015) (May 2015, to appear).
+Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: N-gram IDF: A Global Term Weighting Scheme Based on Information Distance, International World Wide Web Conference (WWW 2015) (May 2015, to appear). [draft](http://iwnsew.com/material/www2015/www2015paper.pdf)
 
 # License
 
