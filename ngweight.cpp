@@ -162,12 +162,14 @@ int main(int argc, char* argv[]){
   Rn[0] = 0;
   int rank = 0;
   for (int i = 1; i < n; ++i){
-    if (T[(SA[i]-1+n)%n] != T[(SA[i-1]-1+n)%n]){
+    if (SA[i]-1 < 0 || SA[i-1]-1 < 0){
+      rank++;
+    }
+    else if (T[SA[i]-1] != T[SA[i-1]-1]){
       rank++;
     }
     Rn[i] = rank;
   }
-  cerr << "rank ok" << endl;
 
   vector<int> preterm;
   vector<unordered_map<uint64_t, uint64_t> > constraint;
