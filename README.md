@@ -28,7 +28,7 @@ weight2 = log(D * df/sdf^2)
 
 weight2 alone works well while weight1 may be useful as a part of TF-IDF scheme.
 
-# Key Term Detection Datasets
+# Key Term Detection Dataset (WWW2015)
 
 Testset is contained in directory "keytermdetection".
 
@@ -40,7 +40,7 @@ One paragraph of an article is enclosed by \<doc\> and \</doc\>.
     </doc>
 
 File "keyterms" contains key terms for each paragraph.
-One line (in TSV) corresponds to a paragraph.
+One line in TSV format corresponds to a paragraph.
 The first number is doc id and the remains are key terms in it.
 
     1482	norse mythology odin	ask and embla	poetic edda	three	old norse	prose edda	snorri sturluson
