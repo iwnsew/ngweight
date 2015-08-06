@@ -6,9 +6,9 @@
 
 # Output format
 
-[internal node id] [term length] [gtf: global term freq] [df: document freq of n-gram] [sdf: document freq for a set of words consisting n-gram] [term (n-gram)]
+[internal node id]	[term length]	[gtf: global term frequency]	[df: document frequency of n-gram]	[sdf: document frequency for a set of words composing n-gram]	[term (n-gram)]
 
-in TSV format.
+in TSV(Tab Separated Values) format.
 
 # Processed data
 
@@ -33,21 +33,21 @@ weight2 alone works well while weight1 may be useful as a part of TF-IDF scheme.
 Testset is contained in directory "keytermdetection".
 
 File "testset" contains first paragraphs of 1,678 Wikipedia articles.
-One paragraph of an article is enclosed by <doc> and </doc>.
+One paragraph of an article is enclosed by \<doc\> and \</doc\>.
 
     <doc id="1482" title="Ask and Embla">
     In Norse mythology, Ask and Embla (from Old Norse "Askr ok Embla")—male and female respectively—were the first two humans, created by the gods. The pair are attested in both the Poetic Edda, compiled in the 13th century from earlier traditional sources, and the Prose Edda, written in the 13th century by Snorri Sturluson. In both sources, three gods, one of whom is Odin, find Ask and Embla and bestow upon them various corporeal and spiritual gifts. A number of theories have been proposed to explain the two figures, and there are occasional references to them in popular culture.
     </doc>
 
 File "keyterms" contains key terms for each paragraph.
-One line corresponds to a paragraph.
-The first number is doc id and the rests are key terms in it.
+One line (in TSV) corresponds to a paragraph.
+The first number is doc id and the remains are key terms in it.
 
     1482	norse mythology odin	ask and embla	poetic edda	three	old norse	prose edda	snorri sturluson
 
 # Reference
 
-Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: N-gram IDF: A Global Term Weighting Scheme Based on Information Distance, International World Wide Web Conference (WWW 2015) (May 2015, to appear). [[draft](http://iwnsew.com/material/www2015/www2015paper.pdf)]
+Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: N-gram IDF: A Global Term Weighting Scheme Based on Information Distance, International World Wide Web Conference (WWW 2015), pp 960-970 (May 2015). [[paper](http://iwnsew.com/material/www2015/www2015paper.pdf)]
 
 # License
 
