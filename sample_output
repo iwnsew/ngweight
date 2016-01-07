@@ -9182,7 +9182,7 @@
 68840	2	2	1	2	highway 43 
 68839	2	2	1	4	highway access 
 68838	2	9	1	6	highway 2 
-68837	3	2	1	6	highway 2 highway 
+68837	3	2	1	4	highway 2 highway 
 68836	2	2	1	7	highway 4 
 68835	2	3	3	7	highway which 
 68834	2	2	2	7	highway and 
@@ -10256,7 +10256,7 @@
 67522	1	4	3	3	ideals 
 67520	1	3	2	2	digest 
 67519	1	5	3	3	tomorrow 
-67518	3	2	1	3	tomorrow and tomorrow 
+67518	3	2	1	1	tomorrow and tomorrow 
 67517	1	3	3	3	condensed 
 67516	1	2	1	1	wallis 
 67515	1	3	3	3	finishing 
@@ -11489,7 +11489,7 @@
 66022	1	31	8	8	frame 
 66020	2	2	1	8	frame s 
 66019	2	3	2	8	frame by 
-66018	3	2	1	8	frame by frame 
+66018	3	2	1	7	frame by frame 
 66017	2	2	1	8	frame and 
 66016	2	3	2	8	frame of 
 66015	2	2	2	8	frame is 
@@ -12037,8 +12037,8 @@
 65306	3	2	2	4	1998 isbn 978 
 65305	2	6	5	21	1998 the 
 65304	1	29	13	13	cambridge 
-65303	2	4	2	13	cambridge cambridge 
-65302	4	3	2	13	cambridge cambridge university press 
+65303	2	4	2	6	cambridge cambridge 
+65302	4	3	2	6	cambridge cambridge university press 
 65301	2	2	2	3	cambridge massachusetts 
 65300	3	14	11	13	cambridge university press 
 65299	7	2	2	4	cambridge university press isbn 978 0 521 
@@ -16537,8 +16537,8 @@
 59961	2	5	2	4	apollo missions 
 59960	2	2	1	3	apollo fell 
 59959	2	2	2	2	apollo begged 
-59958	2	3	1	6	apollo apollo 
-59957	3	2	1	6	apollo apollo was 
+59958	2	3	1	5	apollo apollo 
+59957	3	2	1	5	apollo apollo was 
 59954	2	4	3	5	apollo 13 
 59953	2	2	1	4	apollo gave 
 59952	2	3	2	3	apollo lunar 
@@ -18652,7 +18652,7 @@
 57309	2	2	1	3	alaska rail 
 57308	3	4	1	3	alaska department of 
 57306	4	2	1	2	alaska heritage resources survey 
-57305	2	2	1	4	alaska alaska 
+57305	2	2	1	1	alaska alaska 
 57302	2	3	1	2	alaska railroad 
 57301	2	8	2	4	alaska native 
 57300	2	4	1	1	alaska peninsula 
@@ -20012,7 +20012,7 @@
 55595	2	8	5	17	constitution of 
 55594	2	2	1	17	constitution in 
 55593	2	4	3	17	constitution the 
-55592	4	2	1	17	constitution the new constitution 
+55592	4	2	1	11	constitution the new constitution 
 55590	1	12	9	9	prepare 
 55587	2	3	3	9	prepare the 
 55584	1	29	17	17	approved 
@@ -21500,7 +21500,7 @@
 53717	2	2	1	2	side chains 
 53716	2	3	1	5	side chain 
 53714	2	2	1	17	side group 
-53713	3	2	2	29	side by side 
+53713	3	2	2	15	side by side 
 53712	2	6	5	29	side and 
 53711	2	2	2	28	side but 
 53710	2	22	15	29	side of 
@@ -21571,7 +21571,7 @@
 53627	2	2	2	2	carbon sequestration 
 53626	2	2	1	3	carbon bond 
 53625	2	4	1	3	carbon – 
-53624	3	3	1	3	carbon – carbon 
+53624	3	3	1	1	carbon – carbon 
 53623	2	11	2	7	carbon and 
 53622	1	11	2	2	warming 
 53620	1	32	13	13	centre 
@@ -22536,7 +22536,7 @@
 52425	4	2	2	7	university of chicago press 
 52424	2	11	7	47	university in 
 52423	3	4	1	47	university in the 
-52422	4	2	2	47	university the university of 
+52422	4	2	2	34	university the university of 
 52421	2	2	2	47	university a 
 52418	1	5	5	5	vienna 
 52417	1	6	6	6	hans 
@@ -22623,12 +22623,12 @@
 52305	2	6	4	26	court in 
 52304	3	2	1	26	court in the 
 52303	2	5	3	26	court or 
-52302	4	2	1	26	court or court of 
+52302	4	2	1	19	court or court of 
 52301	2	6	1	26	court to 
 52300	3	2	1	24	court to have 
 52299	2	9	5	26	court the 
-52298	4	3	1	19	court the high court 
-52297	5	2	1	19	court the high court of 
+52298	4	3	1	14	court the high court 
+52297	5	2	1	14	court the high court of 
 52296	2	3	1	25	court that 
 52295	2	3	2	26	court a 
 52293	2	12	7	26	court is 
@@ -23395,7 +23395,7 @@
 51355	2	5	1	1	odd atomic 
 51354	3	4	1	1	odd atomic numbers 
 51353	2	5	3	3	odd numbered 
-51351	2	6	1	6	odd odd 
+51351	2	6	1	2	odd odd 
 51350	3	3	1	1	odd odd nuclei 
 51349	2	2	2	5	odd number 
 51348	2	4	1	5	odd even 
@@ -25602,7 +25602,7 @@
 48743	2	2	2	38	less well 
 48742	2	2	1	37	less often 
 48741	2	3	3	45	less and 
-48740	3	2	2	45	less and less 
+48740	3	2	2	25	less and less 
 48739	2	2	2	45	less in 
 48738	2	2	1	45	less to 
 48737	1	58	28	28	show 
@@ -26633,8 +26633,8 @@
 47437	1	11	4	4	thinkers 
 47436	3	2	2	4	thinkers such as 
 47434	1	17	8	8	00 
-47433	2	5	1	8	00 00 
-47432	3	2	1	8	00 00 00 
+47433	2	5	1	3	00 00 
+47432	3	2	1	1	00 00 00 
 47431	3	2	2	5	00 a m 
 47430	1	19	15	15	1977 
 47427	1	16	4	4	collins 
@@ -28715,7 +28715,7 @@
 44842	1	8	6	6	critic 
 44841	1	168	41	41	development 
 44839	2	5	2	11	development agency 
-44838	3	2	1	11	development agency development 
+44838	3	2	1	7	development agency development 
 44835	2	2	1	31	development so 
 44834	2	2	2	15	development aid 
 44833	3	2	2	28	development related to 
@@ -29188,7 +29188,7 @@
 44219	2	7	6	15	5 billion 
 44217	2	3	3	35	5 7 
 44216	2	3	3	36	5 8 
-44215	2	2	2	52	5 5 
+44215	2	2	2	37	5 5 
 44214	2	2	1	28	5 0 
 44213	2	4	3	45	5 2 
 44212	2	10	10	30	5 000 
@@ -29246,7 +29246,7 @@
 44144	2	3	3	30	0 3 
 44143	2	9	6	33	0 1 
 44142	3	2	1	29	0 1 2 
-44141	5	2	1	27	0 1 to 0 4 
+44141	5	2	1	24	0 1 to 0 4 
 44140	2	2	2	33	0 to 
 44139	2	3	1	34	0 on 
 44136	1	144	23	23	isbn 
@@ -31007,7 +31007,7 @@
 41916	2	3	2	29	2 0 
 41915	5	4	1	9	2 isbn 978 0 19 
 41914	2	2	2	40	2 9 
-41913	2	7	3	58	2 2 
+41913	2	7	3	38	2 2 
 41912	3	3	1	1	2 2 dimethylbutane 
 41911	2	4	2	16	2 hours 
 41910	2	8	6	32	2 000 
@@ -31299,7 +31299,7 @@
 41548	2	2	1	35	around 2 
 41547	2	3	3	35	around 4 
 41546	2	3	3	38	around 1 
-41545	3	2	2	38	around 1 1 
+41545	3	2	2	32	around 1 1 
 41544	2	5	3	40	around them 
 41543	2	4	3	43	around their 
 41542	2	3	3	47	around for 
@@ -32937,13 +32937,13 @@
 39509	2	4	1	4	c bond 
 39508	2	6	1	24	c – 
 39507	3	2	1	14	c – h 
-39506	3	4	1	24	c – c 
-39505	4	3	1	2	c – c bond 
+39506	3	4	1	13	c – c 
+39505	4	3	1	1	c – c bond 
 39504	2	2	2	17	c 2000 
 39503	2	2	2	13	c ad 
 39502	2	5	2	10	c n 
 39501	5	2	1	1	c n h2 n 2 
-39499	2	3	1	44	c c 
+39499	2	3	1	24	c c 
 39498	2	3	2	42	c s 
 39497	3	2	1	7	c s lewis 
 39496	2	3	3	39	c was 
@@ -33100,7 +33100,7 @@
 39279	3	2	2	3	playing the flute 
 39278	2	4	3	8	playing a 
 39277	1	109	40	40	point 
-39276	3	2	1	8	point counter point 
+39276	3	2	1	5	point counter point 
 39274	2	10	7	36	point where 
 39272	3	3	3	36	point where the 
 39271	2	2	2	39	point they 
@@ -33542,7 +33542,7 @@
 38709	3	2	1	4	education achievements its 
 38708	2	2	1	6	education courses 
 38707	2	2	1	12	education programs 
-38706	2	2	2	26	education education 
+38706	2	2	2	16	education education 
 38704	2	2	2	23	education were 
 38703	2	3	2	26	education for 
 38701	2	12	8	26	education and 
@@ -34049,7 +34049,7 @@
 38077	3	2	1	14	4 000 men 
 38076	3	2	1	1	4 t ha 
 38075	2	8	6	28	4 million 
-38073	2	2	2	57	4 4 
+38073	2	2	2	40	4 4 
 38072	2	4	4	48	4 3 
 38071	3	2	1	42	4 states that 
 38070	2	6	6	57	4 and 
@@ -34164,10 +34164,10 @@
 37928	2	8	6	26	3 million 
 37927	3	2	1	24	3 million people 
 37926	2	3	3	48	3 4 
-37925	2	7	6	57	3 3 
+37925	2	7	6	44	3 3 
 37924	2	2	2	7	3 hour 
 37923	2	6	5	52	3 1 
-37922	3	2	2	52	3 1 3 
+37922	3	2	2	43	3 1 3 
 37921	3	2	2	52	3 1 and 
 37920	2	2	2	57	3 from 
 37919	2	6	4	57	3 and 
@@ -34260,7 +34260,7 @@
 37812	3	3	2	42	day of the 
 37810	2	11	8	42	day in 
 37808	2	4	4	42	day to 
-37807	3	2	2	42	day to day 
+37807	3	2	2	29	day to day 
 37806	2	5	5	42	day the 
 37805	2	2	2	42	day on 
 37804	2	2	2	42	day a 
@@ -34301,7 +34301,7 @@
 37745	2	9	9	45	1 6 
 37744	2	2	1	1	1 55164 
 37743	2	8	5	18	1 january 
-37742	5	2	1	2	1 january 1977 00 00 
+37742	5	2	1	1	1 january 1977 00 00 
 37741	3	2	1	18	1 january to 
 37740	2	2	2	39	1 8 
 37738	2	18	9	49	1 5 
@@ -34327,8 +34327,8 @@
 37711	2	2	2	10	1 58 
 37710	2	4	4	51	1 4 
 37709	2	9	5	52	1 3 
-37708	3	2	1	52	1 3 3 
-37707	2	5	5	65	1 1 
+37708	3	2	1	43	1 3 3 
+37707	2	5	5	52	1 1 
 37705	2	3	2	63	1 s 
 37704	2	2	2	61	1 other 
 37703	2	3	3	63	1 for 
@@ -34535,7 +34535,7 @@
 37442	3	14	11	21	new york city 
 37441	4	2	2	21	new york city and 
 37437	4	2	2	11	new york isbn 978 
-37436	3	2	2	36	new york new 
+37436	3	2	2	35	new york new 
 37435	3	2	2	29	new york world 
 37434	3	2	2	36	new york and 
 37433	3	3	3	36	new york in 
@@ -35235,7 +35235,7 @@
 36606	3	3	3	52	more common in 
 36605	2	4	3	76	more by 
 36603	3	2	1	46	more similar to 
-36600	3	6	5	76	more and more 
+36600	3	6	5	70	more and more 
 36599	2	2	2	34	more limited 
 36598	2	3	3	38	more human 
 36597	2	9	7	76	more of 
@@ -36270,8 +36270,8 @@
 35401	3	3	3	65	may not have 
 35400	3	6	4	63	may not be 
 35399	2	3	3	74	may in 
-35398	4	4	4	67	may or may not 
-35397	5	2	2	64	may or may not have 
+35398	4	4	4	57	may or may not 
+35397	5	2	2	56	may or may not have 
 35396	2	119	46	64	may be 
 35394	3	2	2	6	may be costly 
 35393	3	2	1	4	may be ambiguous 
@@ -36442,7 +36442,7 @@
 35210	3	5	4	49	it could be 
 35209	2	3	2	21	it cannot 
 35208	2	3	2	59	it because 
-35207	3	2	2	59	it because it 
+35207	3	2	2	58	it because it 
 35206	4	2	1	11	it acts as a 
 35205	2	2	2	18	it quickly 
 35204	2	5	4	43	it must 
@@ -36468,7 +36468,7 @@
 35182	5	2	2	62	it may also be a 
 35181	4	2	2	62	it may have been 
 35180	3	7	6	64	it may be 
-35179	2	4	4	85	it it 
+35179	2	4	4	75	it it 
 35178	2	2	2	39	it began 
 35177	2	5	4	18	it becomes 
 35176	3	2	2	18	it becomes a 
@@ -37051,7 +37051,7 @@
 34511	2	10	7	57	even more 
 34510	4	2	1	2	even more reactive than 
 34509	2	3	3	50	even after 
-34508	3	2	1	59	even even and 
+34508	3	2	1	38	even even and 
 34507	2	2	2	25	even said 
 34506	2	5	5	56	even when 
 34505	2	13	10	43	even though 
@@ -40969,7 +40969,7 @@
 29642	2	3	3	18	his goal 
 29641	2	27	13	42	his life 
 29640	3	2	1	4	his life einstein 
-29639	3	2	2	42	his life his 
+29639	3	2	2	38	his life his 
 29638	3	2	2	38	his life he 
 29637	3	3	3	42	his life and 
 29635	3	2	2	42	his life to 
@@ -41812,7 +41812,7 @@
 28712	3	2	2	15	he wanted to 
 28711	3	2	2	15	he wanted the 
 28710	2	4	4	16	he felt 
-28709	5	2	1	14	he announced that he would 
+28709	5	2	1	13	he announced that he would 
 28708	4	2	2	10	he settled in the 
 28707	2	3	3	11	he suffered 
 28706	2	4	3	16	he turned 
@@ -42611,7 +42611,7 @@
 27860	3	2	2	28	was a greek 
 27859	3	2	2	44	was a large 
 27856	1	5	3	3	verbal 
-27855	4	2	2	3	verbal and non verbal 
+27855	4	2	2	2	verbal and non verbal 
 27854	1	5	5	5	realm 
 27852	1	17	6	6	sovereignty 
 27851	2	2	2	6	sovereignty over 
@@ -42729,7 +42729,7 @@
 27719	2	5	5	79	one with 
 27718	3	2	2	79	one with a 
 27717	2	8	6	80	one by 
-27716	3	4	4	80	one by one 
+27716	3	4	4	69	one by one 
 27715	3	2	1	80	one by the 
 27714	2	3	3	75	one has 
 27713	2	8	8	67	one can 
@@ -42822,7 +42822,7 @@
 27616	3	3	3	32	e g the 
 27614	2	3	3	22	e l 
 27613	2	3	3	22	e b 
-27611	2	2	2	53	e e 
+27611	2	2	2	36	e e 
 27610	2	2	2	53	e and 
 27609	2	12	11	53	e the 
 27608	1	266	61	61	i 
@@ -43505,7 +43505,7 @@
 26787	2	5	1	2	an albedo 
 26786	4	2	1	1	an albedo of 0 
 26785	2	4	3	23	an advanced 
-26784	9	2	1	2	an advanced degree such as a master s degree 
+26784	9	2	1	1	an advanced degree such as a master s degree 
 26783	2	5	5	10	an extra 
 26782	3	2	2	11	an estimate of 
 26781	2	2	2	19	an independence 
@@ -46595,8 +46595,8 @@
 23294	2	2	2	27	from ancient 
 23293	2	2	2	11	from fossil 
 23292	2	5	4	19	from oil 
-23291	4	8	3	29	from side to side 
-23290	5	2	2	29	from side to side to 
+23291	4	8	3	15	from side to side 
+23290	5	2	2	15	from side to side to 
 23288	2	3	3	42	from water 
 23287	2	2	2	27	from northern 
 23286	2	4	2	25	from space 
@@ -46622,7 +46622,7 @@
 23264	2	4	3	33	from western 
 23263	3	2	1	2	from western sahara 
 23262	2	2	2	57	from high 
-23261	4	2	1	35	from country to country 
+23261	4	2	1	26	from country to country 
 23260	2	2	2	27	from july 
 23259	2	2	2	58	from 2 
 23258	2	5	4	47	from around 
@@ -46680,7 +46680,7 @@
 23201	3	2	2	50	from what is 
 23200	2	5	4	31	from earth 
 23199	2	3	3	51	from modern 
-23198	4	3	2	71	from time to time 
+23198	4	3	2	55	from time to time 
 23197	2	2	2	75	from most 
 23196	2	20	14	85	from other 
 23195	4	4	1	1	from other developmental disorders 
@@ -46730,7 +46730,7 @@
 23151	2	2	2	84	from or 
 23150	2	3	3	91	from to 
 23149	2	3	2	48	from state 
-23148	4	2	1	48	from state to state 
+23148	4	2	1	32	from state to state 
 23147	2	605	79	92	from the 
 23145	3	5	1	3	from the lm 
 23144	4	2	1	3	from the lm to 
@@ -47280,7 +47280,7 @@
 22439	2	3	2	6	and customs 
 22437	2	2	2	6	and anatomy 
 22435	2	10	5	20	and asia 
-22434	3	2	1	20	and asia and 
+22434	3	2	1	19	and asia and 
 22433	2	2	1	1	and socrates 
 22432	2	4	2	5	and zoology 
 22430	2	5	2	3	and metaphysics 
@@ -48590,6 +48590,7 @@
 20988	2	12	9	39	and human 
 20987	3	3	3	14	and human rights 
 20986	2	33	23	96	and of 
+20984	3	5	5	96	and of the 
 20983	3	5	5	96	and of a 
 20982	6	2	2	4	and of a multi party system 
 20981	2	116	44	97	and in 
@@ -48607,6 +48608,7 @@
 20969	4	3	2	19	and in some species 
 20966	3	25	17	97	and in the 
 20965	4	2	2	41	and in the north 
+20964	3	3	3	97	and in a 
 20963	2	3	2	17	and authority 
 20962	2	35	23	79	and some 
 20961	4	2	1	2	and some frogs have 
@@ -48627,6 +48629,7 @@
 20946	3	3	3	52	and to make 
 20945	3	2	2	85	and to which 
 20944	3	2	1	72	and to all 
+20943	3	3	3	95	and to the 
 20942	3	11	8	95	and to a 
 20941	4	8	6	10	and to a lesser 
 20940	5	2	2	6	and to a lesser degree 
@@ -48951,7 +48954,7 @@
 20567	2	2	2	20	as necessary 
 20566	2	3	3	34	as black 
 20565	2	2	1	21	as cultural 
-20564	3	3	3	41	as late as 
+20564	3	3	3	40	as late as 
 20563	5	2	2	17	as late as the mid 
 20562	2	2	2	10	as albert 
 20561	2	11	8	57	as high 
@@ -49016,7 +49019,7 @@
 20496	3	2	1	1	as at delphi 
 20494	2	2	1	34	as groups 
 20493	2	10	8	58	as long 
-20492	3	9	8	58	as long as 
+20492	3	9	8	57	as long as 
 20491	2	4	3	32	as her 
 20490	2	39	25	82	as it 
 20489	3	5	5	76	as it was 
@@ -49055,8 +49058,8 @@
 20451	3	8	4	70	as they are 
 20449	2	13	10	72	as such 
 20448	3	2	2	71	as such it 
-20447	3	25	20	63	as early as 
-20446	4	8	7	63	as early as the 
+20447	3	25	20	61	as early as 
+20446	4	8	7	61	as early as the 
 20445	6	2	2	8	as early as the 17th century 
 20444	2	2	2	72	as were 
 20443	2	3	3	75	as these 
@@ -49117,7 +49120,7 @@
 20384	3	3	2	75	as there is 
 20383	2	2	2	87	as from 
 20382	2	10	9	78	as many 
-20381	3	2	2	78	as many as 
+20381	3	2	2	77	as many as 
 20380	2	4	4	89	as and 
 20379	2	3	3	81	as not 
 20378	3	2	2	81	as not to 
@@ -51055,7 +51058,7 @@
 18025	2	11	9	52	of four 
 18024	2	6	6	33	of seven 
 18023	2	15	10	63	of each 
-18022	3	2	2	63	of each of 
+18022	3	2	2	62	of each of 
 18021	3	2	1	40	of each state 
 18020	2	3	3	44	of near 
 18019	2	2	2	20	of unknown 
@@ -51433,12 +51436,15 @@
 17590	2	28	12	39	of human 
 17588	3	4	2	5	of human anatomy 
 17586	3	2	2	18	of human knowledge 
+17585	2	3	2	96	of of 
+17584	2	3	3	97	of in 
 17583	2	2	2	28	of organization 
 17582	2	31	20	79	of some 
 17581	3	2	2	79	of some of 
 17580	2	4	3	37	of central 
 17579	3	2	1	6	of central tendency 
 17578	2	2	2	85	of or 
+17577	3	2	2	96	of to the 
 17576	2	22	14	49	of state 
 17575	3	2	2	27	of state government 
 17573	3	4	3	49	of state and 
@@ -51654,7 +51660,7 @@
 17313	3	2	2	15	of the twenty 
 17312	3	2	2	36	of the law 
 17311	3	4	4	24	of the art 
-17310	4	2	2	24	of the art of 
+17310	4	2	2	23	of the art of 
 17309	3	2	2	18	of the computer 
 17308	3	4	4	23	of the previous 
 17305	3	2	2	13	of the jews 
@@ -51875,7 +51881,7 @@
 17066	4	2	2	21	of the cost of 
 17065	3	3	3	47	of the public 
 17064	3	4	4	45	of the order 
-17063	4	2	2	45	of the order of 
+17063	4	2	2	44	of the order of 
 17062	3	3	3	29	of the proposed 
 17061	3	2	2	14	of the uk 
 17060	3	7	6	45	of the us 
@@ -52030,8 +52036,8 @@
 16893	5	2	1	7	of the american standards association 
 16892	3	14	8	54	of the name 
 16891	4	2	1	1	of the name allāh 
-16890	4	3	2	54	of the name of 
-16889	5	2	1	54	of the name of the 
+16890	4	3	2	53	of the name of 
+16889	5	2	1	53	of the name of the 
 16888	3	26	11	31	of the earth 
 16887	4	5	3	29	of the earth s 
 16886	5	2	1	2	of the earth s crust 
@@ -53524,6 +53530,7 @@
 15236	2	10	6	37	in central 
 15235	3	3	1	37	in central and 
 15234	2	2	2	85	in or 
+15233	2	2	2	96	in to 
 15232	2	7	5	49	in state 
 15231	2	2443	96	98	in the 
 15230	3	2	1	1	in the philippines 
@@ -54080,7 +54087,7 @@
 14647	4	4	1	46	in the state are 
 14646	4	3	2	47	in the state as 
 14645	5	2	2	41	in the state as well 
-14644	4	3	2	49	in the state in 
+14644	4	3	2	48	in the state in 
 14642	4	2	1	12	in the free territory 
 14641	2	4	3	55	in non 
 14640	3	2	2	23	in non western 
@@ -55810,10 +55817,10 @@
 12696	2	2	2	72	to only 
 12695	2	2	2	18	to market 
 12694	2	17	8	22	to refer 
-12693	3	16	8	22	to refer to 
+12693	3	16	8	19	to refer to 
 12692	5	2	1	1	to refer to asphalt bitumen 
 12691	5	2	1	4	to refer to god in 
-12689	4	3	2	21	to refer to a 
+12689	4	3	2	19	to refer to a 
 12688	3	2	2	31	to hand over 
 12687	2	26	23	86	to other 
 12686	3	2	2	23	to other regions 
@@ -55919,6 +55926,7 @@
 12570	3	2	2	11	to conduct an 
 12569	2	12	8	96	to in 
 12568	4	2	1	1	to in southern alberta 
+12567	3	2	1	96	to in the 
 12566	2	15	15	79	to some 
 12565	3	2	2	20	to some degree 
 12564	3	4	4	18	to some extent 
@@ -56146,7 +56154,7 @@
 12313	3	2	2	33	to the eastern 
 12312	3	16	8	40	to the north 
 12311	4	2	2	27	to the north east 
-12310	6	3	2	7	to the north georgia to the 
+12310	6	3	2	6	to the north georgia to the 
 12308	4	5	5	40	to the north and 
 12307	5	2	2	40	to the north and the 
 12306	3	4	2	16	to the soviet 
@@ -58431,7 +58439,7 @@
 9744	2	10	8	19	the chief 
 9743	5	2	2	9	the chief justice of the 
 9742	2	5	4	13	the criminal 
-9741	7	2	1	9	the criminal law court the high court 
+9741	7	2	1	8	the criminal law court the high court 
 9740	3	3	3	5	the lieutenant governor 
 9739	4	2	2	5	the lieutenant governor is 
 9738	3	2	2	9	the secretary of 
@@ -61485,7 +61493,7 @@
 6275	3	6	6	36	the most popular 
 6273	3	4	2	31	the most significant 
 6272	3	12	10	30	the most famous 
-6271	5	2	2	30	the most famous and most 
+6271	5	2	2	29	the most famous and most 
 6270	3	17	12	40	the most important 
 6269	3	18	12	51	the most common 
 6268	2	3	3	43	the important 
@@ -61646,7 +61654,7 @@
 6076	7	2	1	2	the united states in congress assembled to 
 6075	4	2	2	51	the united states to 
 6074	4	11	8	51	the united states the 
-6073	6	2	2	51	the united states the united states 
+6073	6	2	2	37	the united states the united states 
 6072	4	2	2	51	the united states a 
 6071	4	5	5	50	the united states is 
 6069	2	11	9	13	the 1950s 
@@ -61975,6 +61983,7 @@
 5703	2	3	2	16	the offer 
 5702	2	2	2	39	the thought 
 5701	2	10	8	78	the many 
+5700	2	3	3	97	the and 
 5699	2	8	8	55	the system 
 5698	3	3	3	55	the system of 
 5697	2	4	3	34	the limited 
@@ -61987,6 +61996,7 @@
 5690	4	2	2	9	the human development index 
 5689	3	2	1	11	the human situation 
 5688	3	10	5	22	the human body 
+5687	2	3	3	98	the of 
 5686	3	2	2	11	the conduct of 
 5685	2	11	9	28	the organization 
 5684	9	2	2	4	the organization for security and co operation in europe 
@@ -62740,7 +62750,7 @@
 4844	3	2	2	38	that followed the 
 4843	2	3	2	30	that nature 
 4842	2	10	7	70	that may 
-4841	5	2	2	66	that may or may not 
+4841	5	2	2	57	that may or may not 
 4840	2	10	4	32	that her 
 4839	3	2	1	11	that her son 
 4838	2	56	33	79	that it 
@@ -63385,7 +63395,7 @@
 4123	3	2	2	8	a sort of 
 4122	2	3	2	5	a weapon 
 4121	2	2	2	9	a wall 
-4120	5	2	1	6	a go no go decision 
+4120	5	2	1	4	a go no go decision 
 4119	2	2	2	3	a shield 
 4116	2	3	3	6	a legitimate 
 4115	2	3	3	15	a summary 
@@ -64372,6 +64382,7 @@
 3032	4	2	2	51	a system in which 
 3031	2	4	4	34	a limited 
 3030	2	5	4	39	a human 
+3029	2	2	2	97	a of 
 3028	2	12	7	37	a central 
 3027	3	2	1	23	a central government 
 3026	2	2	2	73	a while 
@@ -65011,6 +65022,7 @@
 2315	3	11	11	38	is thought to 
 2314	4	2	2	38	is thought to have 
 2313	4	5	5	38	is thought to be 
+2312	2	2	2	94	is and 
 2311	2	9	6	88	is as 
 2310	3	2	2	22	is as follows 
 2309	2	8	7	34	is limited 

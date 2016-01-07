@@ -1,8 +1,15 @@
 # How to use
 
+Setup
     $ ./waf configure
     $ ./waf
-    $ bin/default/ngweight -w < sample_text > sample_output
+
+Exact count
+    $ bin/default/ngweight -w -s 0 < sample_text > sample_output
+
+Approximate count (Approx10), min freq for valid N-gram = 5
+    $ bin/default/ngweight -w -s 10 -t 5 < sample_text > sample_output2
+
 
 # Output format
 

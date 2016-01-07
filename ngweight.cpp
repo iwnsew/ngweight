@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 #include <string>
 #include <vector>
 #include <utility>
@@ -8,6 +9,7 @@
 #include "wat_array.hpp"
 
 using namespace std;
+
 
 int getID(const string& str, unordered_map<string, int>& word2id){
   unordered_map<string, int>::const_iterator it = word2id.find(str);
@@ -37,10 +39,10 @@ string getTerm(const vector<int>& T, const int beg, const int len,
 int main(int argc, char* argv[]){
   cmdline::parser p;
   p.add("word", 'w', "word type");
-  p.add("threshold", 't',
-        "min freq to reserve N-grams (for N>1)",
-        false, 2);
+  p.add("threshold", 't', "min freq to reserve N-grams (for N>1)", false, 2);
+  p.add("sdfthreshold", 's', "max df to exactly count (set 0 for exact count)", false, 0);
   p.add("maxlength", 'l', "max length of N-grams", false, 10);
+  p.add("rand", 'r', "initial value for random", false, 1);
 
   if (!p.parse(argc, argv)){
     cerr << p.error() << endl
@@ -58,7 +60,9 @@ int main(int argc, char* argv[]){
 
   bool isWord = p.exist("word");
   int threshold = p.get<int>("threshold");
+  int sdfthreshold = p.get<int>("sdfthreshold");
   int maxlength = p.get<int>("maxlength");
+  int randini = p.get<int>("rand");
   unordered_map<string, int> word2id;
   istreambuf_iterator<char> isit(cin);
   istreambuf_iterator<char> end;
@@ -122,9 +126,24 @@ int main(int argc, char* argv[]){
   }
   cerr << "    n:" << n        << endl;
   cerr << "alpha:" << k        << endl;
+  cerr << "docid:" << docid    << endl;
 
   if (sais_xx(T.begin(), SA.begin(), n, k) == -1){
     return -1;
+  }
+
+  // Randomize Doc
+  vector<int> Drand(docid);
+  for (int i = 0; i < docid; ++i){
+    Drand[i] = i;
+  }
+  mt19937 mt(randini);
+  for (int i = docid-1; i > 0; --i){
+    uniform_int_distribution<> rnd(0, i);
+    int r = rnd(mt);
+    int x = Drand[r];
+    Drand[r] = Drand[i];
+    Drand[i] = x;
   }
 
   int preword = T[SA[0]];
@@ -132,7 +151,7 @@ int main(int argc, char* argv[]){
   vector<uint64_t> DA(n);
   unordered_map<int, pair<int, int> > w2lr;
   for(int i = 1; i < n; ++i){
-    DA[i] = Doc[SA[i]];
+    DA[i] = Drand[Doc[SA[i]]];
     int word = T[SA[i]];
     if (word != preword){
       w2lr[preword] = pair<int, int>(prepos, i);
@@ -171,70 +190,50 @@ int main(int argc, char* argv[]){
     Rn[i] = rank;
   }
 
-  vector<int> preterm;
-  vector<unordered_map<uint64_t, uint64_t> > constraint;
   for (int i = nodeNum - 2; i >= 0; --i){
     if (D[i] > 1 && R[i] - L[i] < threshold) continue;
     if (D[i] > maxlength) continue;
     if (Rn[R[i]-1] - Rn[L[i]] > 0){
-      vector<uint64_t> beg_pos;
-      vector<uint64_t> end_pos;
       int beg = SA[L[i]];
       int len = D[i];
-      int prefix = 0;
-      bool skip = true;
+      bool skip = false;
       int gtf = R[i] - L[i];
-      //double pudf = (double)docid;
       for (int k = 0; k < len; ++k){
         if (T[beg+k] == lfid){
           skip = true;
           break;
         }
-        //int gutf = w2lr[T[beg+k]].second - w2lr[T[beg+k]].first;
-        //pudf *= (1 - exp(-(double)gutf/(double)docid));
-        if ((double)(R[i] - L[i]) > double(w2lr[T[beg+k]].second - w2lr[T[beg+k]].first)/2000){
-          skip = false;
-        }
       }
       if (skip) continue;
-      //double pdf = (double)docid * (1 - exp(-(double)gtf/(double)docid));
-      //double med = log2(pudf/pdf);
-      //double ngw = log2((double)docid*pdf/(pudf*pudf));
-      //if ((double)docid*pdf/(pudf*pudf) < 2) continue;
+      vector<uint64_t> beg_pos;
+      vector<uint64_t> end_pos;
+      vector<size_t> nums;
+      unordered_map<int, int> word2num;
       for (int k = 0; k < len; ++k){
-        if (k < (int)preterm.size() && preterm[k] == T[beg+k]){
-          prefix++;
-        }else{
-          for (int l = preterm.size()-1; l >= k; --l){
-            preterm.pop_back();
-            constraint.pop_back();
-          }
-          beg_pos.push_back(w2lr[T[beg+k]].first);
-          end_pos.push_back(w2lr[T[beg+k]].second);
-          preterm.push_back(T[beg+k]);
-          unordered_map<uint64_t, uint64_t> cnstrnt;
-          constraint.push_back(cnstrnt);
+        unordered_map<int, int>::const_iterator it = word2num.find(T[beg+k]);
+        if (it == word2num.end()){
+          word2num[T[beg+k]] = 1;
+        } else {
+          word2num[T[beg+k]]++;
         }
+      }
+      for (unordered_map<int, int>::const_iterator it = word2num.begin();
+           it != word2num.end(); ++it){
+        beg_pos.push_back(w2lr[it->first].first);
+        end_pos.push_back(w2lr[it->first].second);
+        nums.push_back(it->second);
       }
       string term = getTerm(T, beg, len, id2word);
       int df = wa.Count(L[i], R[i], 0, n, 0);
-      int udf = 0;
-      if (prefix > 0){
-        if (constraint[prefix-1].size() == 0){
-          vector<uint64_t> beg_pos2;
-          vector<uint64_t> end_pos2;
-          for (int k = 0; k < prefix; ++k){
-            beg_pos2.push_back(w2lr[T[beg+k]].first);
-            end_pos2.push_back(w2lr[T[beg+k]].second);
-          }
-          wa.Count(constraint[prefix-1], beg_pos2, end_pos2, 0, n, 0);
-        }
-        udf = wa.Count(constraint[len-1], constraint[prefix-1], beg_pos, end_pos, 0, n, 0);
-      }else{
-        udf = wa.Count(constraint[len-1], beg_pos, end_pos, 0, n, 0);
+      int sdf = 0;
+      if (sdfthreshold <= 0){
+        sdf = wa.Count(beg_pos, end_pos, nums, 0, n, 0);
+      } else {
+        sdf = wa.ApproxCount(beg_pos, end_pos, nums, 0, n, 0, sdfthreshold);
       }
-      //double ngw = log2((double)docid*df/(udf*udf));
-      cout << i << "\t" << len << "\t" << gtf << "\t" << df << "\t" << udf << "\t" << term << endl;
+      //double ngw = log2((double)docid/sdf);
+      //double ngw2 = log2((double)docid*df/(sdf*sdf));
+      cout << i << "\t" << len << "\t" << gtf << "\t" << df << "\t" << sdf << "\t" << term << endl;
     }
   }
 

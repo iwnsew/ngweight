@@ -22,6 +22,7 @@
 
 #include <vector>
 #include <queue>
+#include <tuple>
 #include <stdint.h>
 #include <iostream>
 #include <cassert>
@@ -122,20 +123,30 @@ public:
    * Count distinct characters
    * Added by Masumi Shirakawa, Aug. 18, 2014.
    */
-  int Count(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
-            uint64_t beg_node, uint64_t end_node, size_t h) const;
-
   int Count(uint64_t beg_pos, uint64_t end_pos,
             uint64_t beg_node, uint64_t end_node, size_t h) const;
 
-  int Count(std::unordered_map<uint64_t, uint64_t>& new_constraint,
-            std::unordered_map<uint64_t, uint64_t>& constraint,
-            std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
+  /*
+   * Count distinct characters with number of times (to cope with phrases like "Johnson & Johnson")
+   * Added by Masumi Shirakawa, Apr. 10, 2015.
+   */
+  int Count(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos, std::vector<size_t> nums,
             uint64_t beg_node, uint64_t end_node, size_t h) const;
 
-  int Count(std::unordered_map<uint64_t, uint64_t>& new_constraint,
-            std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
-            uint64_t beg_node, uint64_t end_node, size_t h) const;
+  /*
+   * Approximately Count distinct characters with number of times
+   * Added by Masumi Shirakawa, Aug. 18, 2015.
+   */
+  int ApproxCount(uint64_t beg_pos, uint64_t end_pos,
+            uint64_t beg_node, uint64_t end_node, size_t h, int th) const;
+
+  int ApproxCount(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
+                  std::vector<size_t> nums, uint64_t beg_node, uint64_t end_node,
+                  size_t h, int th) const;
+
+  std::tuple<double, int> ApproxCount(std::vector<uint64_t> beg_pos, std::vector<uint64_t> end_pos,
+                         std::vector<size_t> nums, uint64_t beg_node, uint64_t end_node,
+                         size_t h, int th, int tmpcount) const;
 
  /**
    * Compute the frequency of characters c' < c, c'=c, and c' > c, in the subarray A[0...pos)
