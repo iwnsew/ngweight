@@ -1,5 +1,7 @@
 # How to use
 
+Requirement: C++11
+
 Setup
 
     $ ./waf configure
