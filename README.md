@@ -7,7 +7,7 @@ Setup
     $ ./waf configure
     $ ./waf
 
-Exact count
+Exact count (time consuming)
 
     $ bin/default/ngweight -w -s 0 < sample_text > sample_output
 
