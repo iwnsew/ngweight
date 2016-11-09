@@ -15,6 +15,8 @@ Approximate count (Approx10), min freq for valid N-gram = 5
 
     $ bin/default/ngweight -w -s 10 -t 5 < sample_text > sample_output2
 
+Recommended approximation count is 50 (-s 50) or more based on our new results (under review for publication).
+
 
 # Output format
 
