@@ -49,7 +49,7 @@ weight2 = log(D * df/sdf^2)
 
 weight2 alone works well while weight1 may be useful as a part of TF-IDF scheme.
 
-# Key Term Detection Dataset (WWW2015)
+# Key Term Detection Dataset
 
 Testset is contained in directory "keytermdetection".
 
