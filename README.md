@@ -1,3 +1,5 @@
+This tool implements the method to compute N-gram IDF weights for all valid word N-grams in the given corpus (document set) [1][2].
+
 # How to use
 
 Requirement: C++11
@@ -15,8 +17,13 @@ Approximate count (Approx10), min freq for valid N-gram = 5
 
     $ bin/default/ngweight -w -s 10 -t 5 < sample_text > sample_output2
 
-Recommended approximation count is 50 (-s 50) or more based on our new results (under review for publication).
+Recommended approximation count is 50 (-s 50) or more based on the results [1].
 
+# Input format
+
+Text documents with delimiters.
+
+Each input document has a header starting by ASCII code "0x02" and ending by "0x03". This header acts as a delimiter for documents.
 
 # Output format
 
@@ -61,7 +68,9 @@ The first number is doc id and the remains are key terms in it.
 
 # Reference
 
-Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: N-gram IDF: A Global Term Weighting Scheme Based on Information Distance, International World Wide Web Conference (WWW 2015), pp 960-970 (May 2015). [[paper](http://iwnsew.com/material/www2015/www2015paper.pdf)]
+[1] Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: IDF for Word N-grams, ACM Transactions on Information Systems (TOIS) (2017, to appear).
+
+[2] Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: N-gram IDF: A Global Term Weighting Scheme Based on Information Distance, International World Wide Web Conference (WWW 2015), pp 960-970 (May 2015). [[paper](http://iwnsew.com/material/www2015/www2015paper.pdf)]
 
 # License
 
