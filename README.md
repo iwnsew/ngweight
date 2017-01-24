@@ -27,15 +27,29 @@ Each input document has a header starting by ASCII code "0x02" and ending by "0x
 
 # Output format
 
-[internal node id]	[term length]	[gtf: global term frequency]	[df: document frequency of n-gram]	[sdf: document frequency for a set of words composing n-gram]	[term (n-gram)]
+[id]    [len]   [gtf]   [df]    [sdf]   [term]
 
 in TSV(Tab Separated Values) format.
+
+* id: internal node id
+
+* len: term length (number of words in N-gram, or N)
+
+* gtf: global term frequency
+
+* df: document frequency of N-gram
+
+* sdf: document frequency of a set of words composing N-gram
+
+* term: N-gram
 
 # Processed data
 
 Using English Wikipedia data (Oct. 1, 2013)
 
 http://mljournalism.com/ngw/ngram.bz2
+
+total number of documents |D| = 4,379,810
 
 # Demo system
 
@@ -47,7 +61,7 @@ weight1 = log(D/sdf)
 
 weight2 = log(D * df/sdf^2)
 
-weight2 alone works well while weight1 may be useful as a part of TF-IDF scheme.
+weight2 alone works well while weight1 may be useful as a part of TF-IDF scheme (requires further research on weight1).
 
 # Key Term Detection Dataset
 
