@@ -57,9 +57,9 @@ http://mljournalism.com/ngw/
 
 # N-gram IDF weight
 
-weight1 = log(D/sdf)
+weight1 = log(|D|/sdf)
 
-weight2 = log(D * df/sdf^2)
+weight2 = log(|D| * df/sdf^2)
 
 weight2 alone works well while weight1 may be useful as a part of TF-IDF scheme (requires further research on weight1).
 
