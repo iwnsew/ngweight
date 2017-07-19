@@ -82,7 +82,7 @@ The first number is doc id and the remains are key terms in it.
 
 # Reference
 
-[1] Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: IDF for Word N-grams, ACM Transactions on Information Systems (TOIS), Vol. 36, Issue 1, Article 5 (June 2017). Paper can be accessed through [[http://iwnsew.com]].
+[1] Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: IDF for Word N-grams, ACM Transactions on Information Systems (TOIS), Vol. 36, Issue 1, Article 5 (June 2017). Paper can be accessed through [author's web site](http://iwnsew.com).
 
 [2] Masumi Shirakawa, Takahiro Hara and Shojiro Nishio: N-gram IDF: A Global Term Weighting Scheme Based on Information Distance, International World Wide Web Conference (WWW 2015), pp 960-970 (May 2015). [[paper](http://iwnsew.com/material/www2015/www2015paper.pdf)]
 
